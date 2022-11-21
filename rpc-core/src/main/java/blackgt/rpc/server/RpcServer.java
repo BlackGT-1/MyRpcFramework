@@ -1,6 +1,8 @@
 package blackgt.rpc.server;
 
-import lombok.extern.slf4j.Slf4j;
+import blackgt.rpc.handler.RequestHandler;
+import blackgt.rpc.handler.RequestHandlerThread;
+import blackgt.rpc.registry.ServiceRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,26 +18,33 @@ import java.util.concurrent.*;
  * 说明 ：提供者代码
  */
 public class RpcServer {
-    private final ExecutorService threadPool;
     private static final Logger logger = LoggerFactory.getLogger(RpcServer.class);
+    private final ExecutorService threadPool;
+    private RequestHandler requestHandler = new RequestHandler();
+    //服务注册表
+    private final ServiceRegistry serviceRegistry;
 
-    public RpcServer() {
-        int corePoolSize = 5;
-        int maxPoolSize = 20;
-        long keepAliveTime = 60;
+    private static final int CORE_POOL_SIZE = 5;
+    private static final int MAX_POOL_SIZE = 20;
+    private static final int KEEP_ALIVE_TIME = 60;
+    private static final int BLOCKING_QUEUE_CAPACITY = 100;
 
-        ArrayBlockingQueue<Runnable> workingQueue = new ArrayBlockingQueue<>(100);
+
+    public RpcServer(ServiceRegistry serviceRegistry) {
+        this.serviceRegistry = serviceRegistry;
+        ArrayBlockingQueue<Runnable> workingQueue = new ArrayBlockingQueue<>(BLOCKING_QUEUE_CAPACITY);
         ThreadFactory threadFactory = Executors.defaultThreadFactory();
-        threadPool = new ThreadPoolExecutor(corePoolSize,maxPoolSize,keepAliveTime,TimeUnit.SECONDS,workingQueue,threadFactory);
+        threadPool = new ThreadPoolExecutor(CORE_POOL_SIZE,MAX_POOL_SIZE,KEEP_ALIVE_TIME,TimeUnit.SECONDS,workingQueue,threadFactory);
     }
-    public void register(Object service,int port){
+    public void startServer(int port){
         try(ServerSocket serverSocket = new ServerSocket(port)){
             logger.info("服务器正在启动。。。。。");
             Socket socket;
             while ((socket=serverSocket.accept()) !=null){
-                logger.info("客户端连接成功,ip地址为:"+socket.getInetAddress());
-                threadPool.execute(new Worker(socket,service));
+                logger.info("客户端连接成功,ip地址为:{} 端口号:{}",socket.getInetAddress(),socket.getPort());
+                threadPool.execute(new RequestHandlerThread(socket,serviceRegistry, requestHandler));
             }
+            threadPool.shutdown();
         }catch (IOException e){
             logger.error("连接时发生错误"+e);
         }

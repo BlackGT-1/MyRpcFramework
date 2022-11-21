@@ -17,9 +17,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/MyRpcFramework" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -29,9 +33,11 @@
     </option>
   </component>
   <component name="ProjectId" id="2HTR39sQNH9q285ZPwnFikM5G2F" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../My-RPC-Framework-8467b19d17e432c502b8dfb6a1dbcc69330fb468" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -51,7 +57,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TestClient">
+  <component name="RunManager" selected="Application.TestServer">
     <configuration name="TestClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.blackgt.test.TestClient" />
       <module name="Mytest-client" />
@@ -78,10 +84,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="b" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="b" />
+      <module name="rpc-common" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.TestClient" />
         <item itemvalue="Application.TestServer" />
+        <item itemvalue="Application.b" />
       </list>
     </recent_temporary>
   </component>
@@ -97,10 +111,28 @@
       <updated>1668306884185</updated>
       <workItem from="1668306887796" duration="18039000" />
       <workItem from="1668398826075" duration="1908000" />
+      <workItem from="1668411095600" duration="1109000" />
+      <workItem from="1668753840757" duration="2718000" />
+      <workItem from="1668757708012" duration="4383000" />
+      <workItem from="1668840393845" duration="12514000" />
+      <workItem from="1668913250568" duration="12480000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

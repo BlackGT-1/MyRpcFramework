@@ -1,6 +1,6 @@
 package blackgt.rpc.entity;
 
-import blackgt.rpc.enums.ResponseMessage;
+import blackgt.rpc.enums.ResponseMessageEnums;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -25,15 +25,20 @@ public class RpcResponse<T> implements Serializable {
      *  响应成功返回的数据
      */
     private T data;
+    /**
+     * 第一个<T>声明T为泛型，和类名区别开来，而不是T.class。
+     */
 
+    //返回调用成功的对象
     public static <T> RpcResponse<T> success(T data){
         RpcResponse<T> rpcResponse = new RpcResponse<>();
-        rpcResponse.setStatusCode(ResponseMessage.SUCCESS.getCode());
+        rpcResponse.setStatusCode(ResponseMessageEnums.SUCCESS.getCode());
         rpcResponse.setData(data);
         return rpcResponse;
 
     }
-    public static <T> RpcResponse<T> fail(ResponseMessage status){
+    //返回调用失败对象
+    public static <T> RpcResponse<T> fail(ResponseMessageEnums status){
         RpcResponse<T> rpcResponse = new RpcResponse<>();
         rpcResponse.setStatusCode(status.getCode());
         rpcResponse.setMsg(status.getMes());

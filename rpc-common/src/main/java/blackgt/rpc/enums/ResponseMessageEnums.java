@@ -11,7 +11,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public enum ResponseMessage {
+public enum ResponseMessageEnums {
     SUCCESS(200,"方法调用成功"),
     Fail(500,"方法调用失败"),
     CANNOT_FOUND_METHOD(506,"没有找到该方法"),

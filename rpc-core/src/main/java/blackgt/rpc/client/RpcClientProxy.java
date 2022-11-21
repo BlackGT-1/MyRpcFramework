@@ -2,6 +2,8 @@ package blackgt.rpc.client;
 
 import blackgt.rpc.entity.RpcRequest;
 import blackgt.rpc.entity.RpcResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -18,6 +20,7 @@ import java.lang.reflect.Proxy;
  *      并且调用方法时生成需要的RpcRequest对象并且发送给服务端
  */
 public class RpcClientProxy implements InvocationHandler {
+    private static final Logger logger = LoggerFactory.getLogger(RpcClientProxy.class);
     /**
      * 指出服务器地址
      */
@@ -44,6 +47,7 @@ public class RpcClientProxy implements InvocationHandler {
     }
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        logger.info("调用了方法：{}###{}, ",method.getDeclaringClass().getName(),method.getName());
         RpcRequest rpcRequest = RpcRequest.builder()
                 .interfaceName(method.getDeclaringClass().getName())
                 .methodName(method.getName())
@@ -51,7 +55,7 @@ public class RpcClientProxy implements InvocationHandler {
                 .methodParameterType(method.getParameterTypes())
                 .build();
         RpcClient rpcClient = new RpcClient();
-        return ((RpcResponse)rpcClient.sendRequest(rpcRequest,host,port)).getData();
+        return rpcClient.sendRequest(rpcRequest,host,port);
     }
 
 }
