@@ -3,6 +3,7 @@ package com.blackgt.test;
 import blackgt.api.HelloObject;
 import blackgt.api.HelloService;
 import blackgt.rpc.client.RpcClientProxy;
+import blackgt.rpc.socket.client.SocketClient;
 
 import java.util.Arrays;
 
@@ -14,7 +15,8 @@ import java.util.Arrays;
  */
 public class TestClient {
     public static void main(String[] args) {
-        RpcClientProxy rpcClientProxy = new RpcClientProxy("127.0.0.1", 9000);
+        SocketClient socketClient = new SocketClient("127.0.0.1", 9000);
+        RpcClientProxy rpcClientProxy = new RpcClientProxy(socketClient);
         HelloService proxy = rpcClientProxy.getProxy(HelloService.class);
         HelloObject object = new HelloObject(15, "send a message");
         String hello = proxy.hello(object);

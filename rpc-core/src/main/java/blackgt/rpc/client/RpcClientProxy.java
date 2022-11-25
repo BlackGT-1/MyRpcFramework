@@ -21,18 +21,10 @@ import java.lang.reflect.Proxy;
  */
 public class RpcClientProxy implements InvocationHandler {
     private static final Logger logger = LoggerFactory.getLogger(RpcClientProxy.class);
-    /**
-     * 指出服务器地址
-     */
-    private String host;
-    /**
-     * 指出服务端口号
-     */
-    private int port;
+    private final blackgt.rpc.universalInterface.RpcClient client;
 
-    public RpcClientProxy(String host, int port) {
-        this.host = host;
-        this.port = port;
+    public RpcClientProxy(blackgt.rpc.universalInterface.RpcClient client) {
+        this.client = client;
     }
 
     //获取传入类的代理
@@ -48,14 +40,9 @@ public class RpcClientProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         logger.info("调用了方法：{}###{}, ",method.getDeclaringClass().getName(),method.getName());
-        RpcRequest rpcRequest = RpcRequest.builder()
-                .interfaceName(method.getDeclaringClass().getName())
-                .methodName(method.getName())
-                .methodParameters(args)
-                .methodParameterType(method.getParameterTypes())
-                .build();
-        RpcClient rpcClient = new RpcClient();
-        return rpcClient.sendRequest(rpcRequest,host,port);
+        RpcRequest rpcRequest = new RpcRequest(method.getDeclaringClass().getName(),
+                method.getName(), args, method.getParameterTypes());
+        return client.sendRpcRequest(rpcRequest);
     }
 
 }

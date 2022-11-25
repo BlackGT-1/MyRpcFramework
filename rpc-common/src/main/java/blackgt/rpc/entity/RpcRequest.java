@@ -1,5 +1,6 @@
 package blackgt.rpc.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,13 +9,15 @@ import java.io.Serializable;
 /**
  * @Author blackgt
  * @Date 2022/11/13 14:07
- * @Version 1.0
+ * @Version 2.0
  * 说明 ：消费者向提供者发送的请求对象
  */
 @Data
-//开启建造者模式
-@Builder
+@AllArgsConstructor
 public class RpcRequest implements Serializable {
+    public RpcRequest(){
+
+    }
     /**
      * 待调用接口的名称
      */
