@@ -8,11 +8,16 @@ import java.io.Serializable;
 /**
  * @Author blackgt
  * @Date 2022/11/13 14:08
- * @Version 1.0
- * 说明 ：提供者执行完成/错误后向消费者发送结果对象
+ * @Version 2.0
+ * 说明 ：服务提供者执行完成/错误后向消费者发送结果对象
  */
 @Data
 public class RpcResponse<T> implements Serializable {
+
+    /**
+     * 响应id
+     */
+    private String requestId;
     /**
      * 状态码信息
      */
@@ -30,16 +35,18 @@ public class RpcResponse<T> implements Serializable {
      */
 
     //返回调用成功的对象
-    public static <T> RpcResponse<T> success(T data){
+    public static <T> RpcResponse<T> success(T data,String requestId){
         RpcResponse<T> rpcResponse = new RpcResponse<>();
+        rpcResponse.setRequestId(requestId);
         rpcResponse.setStatusCode(ResponseMessageEnums.SUCCESS.getCode());
         rpcResponse.setData(data);
         return rpcResponse;
 
     }
     //返回调用失败对象
-    public static <T> RpcResponse<T> fail(ResponseMessageEnums status){
+    public static <T> RpcResponse<T> fail(ResponseMessageEnums status,String requestId){
         RpcResponse<T> rpcResponse = new RpcResponse<>();
+        rpcResponse.setRequestId(requestId);
         rpcResponse.setStatusCode(status.getCode());
         rpcResponse.setMsg(status.getMes());
         return rpcResponse;

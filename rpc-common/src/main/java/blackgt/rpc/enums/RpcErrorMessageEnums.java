@@ -19,7 +19,11 @@ public enum RpcErrorMessageEnums {
     REQUEST_NOT_MATCH_RESPONSE("返回结果错误！请求和返回的相应不匹配"),
     UNKNOWN_PROTOCOL("未知的协议"),
     UNKNOWN_SERIALIZER("不识别的(反)序列化器"),
-    UNKNOWN_PACKAGE_TYPE("不识别的数据包类型");
+    UNKNOWN_PACKAGE_TYPE("不识别的数据包类型"),
+    FAILED_TO_CONNECT_SERVICEREGISTRY("连接注册中心失败"),
+    REGISTER_SERVICE_FAILED("服务注册失败"),
+    SERIALIZER_NOT_FOUND("没有找到序列化器"),
+    FAILED_TO_INVOKE_SERVICE("服务调用失败");
 
     private final String message;
 }
