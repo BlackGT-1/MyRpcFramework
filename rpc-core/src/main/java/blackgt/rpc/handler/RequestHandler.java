@@ -3,6 +3,8 @@ package blackgt.rpc.handler;
 import blackgt.rpc.entity.RpcRequest;
 import blackgt.rpc.entity.RpcResponse;
 import blackgt.rpc.enums.ResponseMessageEnums;
+import blackgt.rpc.provider.ServiceProvider;
+import blackgt.rpc.provider.ServiceProviderImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,14 +14,18 @@ import java.lang.reflect.Method;
 /**
  * @Author blackgt
  * @Date 2022/11/19 16:41
- * @Version 1.0
+ * @Version 2.0
  * 说明 ：执行过程调用的处理器
  */
 public class RequestHandler {
     private static final Logger logger = LoggerFactory.getLogger(RequestHandler.class);
-
-    public Object handler(RpcRequest rpcRequest,Object service){
+    private static final ServiceProvider serviceProvider;
+    static {
+        serviceProvider = new ServiceProviderImpl();
+    }
+    public Object handler(RpcRequest rpcRequest){
         Object res = null;
+        Object service = serviceProvider.getServiceProvider(rpcRequest.getInterfaceName());
         try {
             res = InvokeTargetMethod(rpcRequest,service);
             logger.info("服务:{} 成功调用方法:{}", rpcRequest.getInterfaceName(), rpcRequest.getMethodName());
@@ -34,7 +40,7 @@ public class RequestHandler {
         try{
             method=service.getClass().getMethod(rpcRequest.getMethodName(),rpcRequest.getMethodParameterType());
         }catch (NoSuchMethodException e) {
-            return RpcResponse.fail(ResponseMessageEnums.CANNOT_FOUND_METHOD);
+            return RpcResponse.fail(ResponseMessageEnums.CANNOT_FOUND_METHOD,rpcRequest.getRequestId());
         }
         return method.invoke(service,rpcRequest.getMethodParameters());
     }

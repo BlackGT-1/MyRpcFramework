@@ -46,6 +46,13 @@
             <artifactId>kryo</artifactId>
             <version>4.0.2</version>
         </dependency>
+        <!--Nacos依赖-->
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+            <version>1.3.0</version>
+        </dependency>
+
     </dependencies>
 
 

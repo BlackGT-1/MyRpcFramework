@@ -3,15 +3,13 @@ package blackgt.rpc.handler;
 import blackgt.rpc.entity.RpcRequest;
 import blackgt.rpc.entity.RpcResponse;
 import blackgt.rpc.registry.ServiceRegistry;
-import blackgt.rpc.server.RpcServer;
+import blackgt.rpc.serializer.defaultSerializer;
+import blackgt.rpc.universalInterface.RpcServer;
+import com.esotericsoftware.kryo.DefaultSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -27,26 +25,22 @@ public class RequestHandlerThread implements Runnable{
     private Socket socket;
     private ServiceRegistry serviceRegistry;
     private RequestHandler requestHandler;
+    private defaultSerializer serializer;
 
-    public RequestHandlerThread(Socket socket, ServiceRegistry serviceRegistry, RequestHandler requestHandler) {
+    public RequestHandlerThread(Socket socket, ServiceRegistry serviceRegistry, RequestHandler requestHandler,defaultSerializer serializer) {
         this.socket = socket;
         this.serviceRegistry = serviceRegistry;
         this.requestHandler = requestHandler;
+        this.serializer = serializer;
     }
 
     @Override
     public void run() {
-        try(ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream())
-        ) {
-            RpcRequest rpcRequest  = (RpcRequest)objectInputStream.readObject();
-            String interfaceName = rpcRequest.getInterfaceName();
-            Object service = serviceRegistry.getService(interfaceName);
-            Object res = requestHandler.handler(rpcRequest, service);
-
-            objectOutputStream.writeObject(RpcResponse.success(res));
-            objectOutputStream.flush();
-        }catch (IOException | ClassNotFoundException e){
+        //()中确保了每个资源,在语句结束时关闭
+        try(InputStream inputStream = socket.getInputStream();
+            OutputStream outputStream = socket.getOutputStream()){
+            //todo
+        }catch (IOException e){
             logger.error("有调用或发送时发生异常"+e);
         }
     }

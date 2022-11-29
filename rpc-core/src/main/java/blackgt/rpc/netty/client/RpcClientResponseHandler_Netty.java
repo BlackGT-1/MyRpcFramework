@@ -1,5 +1,6 @@
 package blackgt.rpc.netty.client;
 
+import blackgt.rpc.entity.RpcResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.AttributeKey;
@@ -13,14 +14,14 @@ import org.slf4j.LoggerFactory;
  * @Version 1.0
  * 说明 ：
  */
-public class RpcClientResponseHandler_Netty extends SimpleChannelInboundHandler {
+public class RpcClientResponseHandler_Netty extends SimpleChannelInboundHandler<RpcResponse>{
 
-    private static final Logger logger = LoggerFactory.getLogger(RpcClient_Netty.class);
+    private static final Logger logger = LoggerFactory.getLogger(RpcClientResponseHandler_Netty.class);
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, RpcResponse msg) throws Exception {
         try {
             logger.info(String.format("客户端接收到消息：%s",msg));
-            AttributeKey<Object> rpcResponseKey = AttributeKey.valueOf("rpcResponse");
+            AttributeKey<RpcResponse> rpcResponseKey = AttributeKey.valueOf("rpcResponse"+msg.getRequestId());
             ctx.channel().attr(rpcResponseKey).set(msg);
             ctx.channel().close();
         }finally {
