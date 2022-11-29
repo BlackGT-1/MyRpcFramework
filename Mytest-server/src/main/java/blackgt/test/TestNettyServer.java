@@ -1,8 +1,8 @@
 package blackgt.test;
 
-import blackgt.api.HelloObject;
+import blackgt.api.HelloService;
 import blackgt.rpc.netty.server.RpcServer_Netty;
-import blackgt.rpc.registry.defaultServiceRegistry;
+import blackgt.rpc.serializer.KryoSerializer;
 
 /**
  * @Author blackgt
@@ -13,11 +13,8 @@ import blackgt.rpc.registry.defaultServiceRegistry;
 public class TestNettyServer {
     public static void main(String[] args) {
         HelloServiceImpl helloService = new HelloServiceImpl();
-        defaultServiceRegistry defaultServiceRegistry = new defaultServiceRegistry();
-        //注册服务
-        defaultServiceRegistry.register(helloService);
-        RpcServer_Netty rpcServer_netty = new RpcServer_Netty();
-        rpcServer_netty.startServer(8999);
-
+        RpcServer_Netty server = new RpcServer_Netty("127.0.0.1", 9000);
+        server.setSerializer(new KryoSerializer());
+        server.publishService(helloService, HelloService.class);
     }
 }

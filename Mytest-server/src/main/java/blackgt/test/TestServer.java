@@ -1,9 +1,6 @@
 package blackgt.test;
 
 import blackgt.api.HelloService;
-import blackgt.rpc.registry.ServiceRegistry;
-import blackgt.rpc.registry.defaultServiceRegistry;
-import blackgt.rpc.server.RpcServer;
 
 /**
  * @Author blackgt
@@ -14,9 +11,5 @@ import blackgt.rpc.server.RpcServer;
 public class TestServer {
     public static void main(String[] args) {
         HelloService helloService = new HelloServiceImpl();
-        ServiceRegistry serviceRegistry = new defaultServiceRegistry();
-        serviceRegistry.register(helloService);
-        RpcServer rpcServer = new RpcServer(serviceRegistry);
-        rpcServer.startServer(9000);
     }
 }
