@@ -13,11 +13,25 @@
       <executable />
     </execution>
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -37,7 +51,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../My-RPC-Framework-8467b19d17e432c502b8dfb6a1dbcc69330fb468" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -57,13 +71,39 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TestServer">
+  <component name="RunManager" selected="Application.TestClientNetty">
     <configuration name="TestClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.blackgt.test.TestClient" />
       <module name="Mytest-client" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.blackgt.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestClientNetty" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.blackgt.test.TestClientNetty" />
+      <module name="Mytest-client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.blackgt.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestNettyServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="blackgt.test.TestNettyServer" />
+      <module name="Mytest-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="blackgt.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -93,6 +133,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestClientNetty" />
+        <item itemvalue="Application.TestNettyServer" />
         <item itemvalue="Application.TestClient" />
         <item itemvalue="Application.TestServer" />
         <item itemvalue="Application.b" />
@@ -116,6 +158,16 @@
       <workItem from="1668757708012" duration="4383000" />
       <workItem from="1668840393845" duration="12514000" />
       <workItem from="1668913250568" duration="12480000" />
+      <workItem from="1669009589382" duration="19043000" />
+      <workItem from="1669091422276" duration="12148000" />
+      <workItem from="1669260982025" duration="15783000" />
+      <workItem from="1669341429277" duration="1487000" />
+      <workItem from="1669343020314" duration="18533000" />
+      <workItem from="1669379257966" duration="2099000" />
+      <workItem from="1669532031056" duration="1773000" />
+      <workItem from="1669547417431" duration="9931000" />
+      <workItem from="1669605552065" duration="21749000" />
+      <workItem from="1669703894527" duration="13398000" />
     </task>
     <servers />
   </component>
@@ -134,5 +186,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/rpc-core/src/main/java/blackgt/rpc/netty/client/RpcClient_Netty.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

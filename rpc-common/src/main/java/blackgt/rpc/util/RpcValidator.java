@@ -34,7 +34,7 @@ public class RpcValidator {
             throw new RpcException(RpcErrorMessageEnums.REQUEST_NOT_MATCH_RESPONSE);
         }
         //检查响应状态码信息是否为空或是返回获取失败的状态码
-        if(rpcResponse.getStatusCode() == null || !rpcResponse.getStatusCode().equals(ResponseMessageEnums.SUCCESS)){
+        if(rpcResponse.getStatusCode() == null || !rpcResponse.getStatusCode().equals(ResponseMessageEnums.SUCCESS.getCode())){
             logger.error("服务状态码信息异常,调用服务名:{},RpcResponse:{}",rpcRequest.getInterfaceName(),rpcResponse.toString());
             throw new RpcException(RpcErrorMessageEnums.FAILED_TO_INVOKE_SERVICE);
         }
