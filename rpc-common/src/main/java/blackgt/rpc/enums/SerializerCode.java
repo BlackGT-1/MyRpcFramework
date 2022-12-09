@@ -13,6 +13,8 @@ import lombok.Getter;
 @Getter
 public enum SerializerCode {
     KRYO(0),
-    JACKSON(1);
+    JACKSON(1),
+    PROTOSTUFF(2),
+    HESSIAN(3);
     private final int code;
 }
