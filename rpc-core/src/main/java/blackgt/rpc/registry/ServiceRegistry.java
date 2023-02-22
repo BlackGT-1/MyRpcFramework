@@ -15,11 +15,4 @@ public interface ServiceRegistry {
      * @param serviceName 服务名称
      */
     void register(InetSocketAddress address,String serviceName);
-
-    /**
-     * 查找服务
-     * @param serviceName 服务名称
-     * @return 服务实例
-     */
-    InetSocketAddress findService(String serviceName);
 }

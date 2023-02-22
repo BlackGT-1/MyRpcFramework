@@ -2,8 +2,8 @@ package com.blackgt.test;
 
 import blackgt.api.HelloObject;
 import blackgt.api.HelloService;
-import blackgt.rpc.netty.client.RpcClient_Netty;
-import blackgt.rpc.proxy.RpcClientProxy;
+import blackgt.rpc.transport.netty.client.RpcClient_Netty;
+import blackgt.rpc.transport.proxy.RpcClientProxy;
 import blackgt.rpc.registry.NacosServiceRegistry;
 import blackgt.rpc.serializer.KryoSerializer;
 
@@ -15,17 +15,11 @@ import blackgt.rpc.serializer.KryoSerializer;
  */
 public class TestClientNetty {
     public static void main(String[] args) {
-        //创建Netty客户端指定注册中心
-        RpcClient_Netty client = new RpcClient_Netty(new NacosServiceRegistry());
-        //指定（反）序列化器
-        client.setSerializer(new KryoSerializer());
-
+        RpcClient_Netty client = new RpcClient_Netty();
         RpcClientProxy rpcClientProxy = new RpcClientProxy(client);
-        HelloService helloServiceProxy = rpcClientProxy.getProxy(HelloService.class);
-
-        HelloObject obj = new HelloObject(111, "send a message");
-        String hello = helloServiceProxy.hello(obj);
-        System.out.println(hello);
-
+        HelloService proxy = rpcClientProxy.getProxy(HelloService.class);
+        HelloObject mes = new HelloObject(12, "发送一条消息");
+        String res = proxy.hello(mes);
+        System.out.println(res);
     }
 }

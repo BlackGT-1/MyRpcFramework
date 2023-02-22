@@ -24,24 +24,20 @@ public class RequestHandler {
         serviceProvider = new ServiceProviderImpl();
     }
     public Object handler(RpcRequest rpcRequest){
-        Object res = null;
         Object service = serviceProvider.getServiceProvider(rpcRequest.getInterfaceName());
-        try {
-            res = InvokeTargetMethod(rpcRequest,service);
-            logger.info("服务:{} 成功调用方法:{}", rpcRequest.getInterfaceName(), rpcRequest.getMethodName());
-        }catch (IllegalAccessException | InvocationTargetException e){
-            logger.error("调用或者发送时出现错误: {}",e);
-        }
-        return res;
+        logger.info("服务:{} 成功调用方法:{}", rpcRequest.getInterfaceName(), rpcRequest.getMethodName());
+
+        return InvokeTargetMethod(rpcRequest,service);
     }
     //通过反射机制调用目标类的方法
-    public Object InvokeTargetMethod(RpcRequest rpcRequest,Object service)throws IllegalAccessException,InvocationTargetException{
-        Method method;
+    public Object InvokeTargetMethod(RpcRequest rpcRequest,Object service){
+        Object res;
         try{
-            method=service.getClass().getMethod(rpcRequest.getMethodName(),rpcRequest.getMethodParameterType());
-        }catch (NoSuchMethodException e) {
+            Method method=service.getClass().getMethod(rpcRequest.getMethodName(),rpcRequest.getMethodParameterType());
+            res = method.invoke(service,rpcRequest.getMethodParameters());
+        }catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             return RpcResponse.fail(ResponseMessageEnums.CANNOT_FOUND_METHOD,rpcRequest.getRequestId());
         }
-        return method.invoke(service,rpcRequest.getMethodParameters());
+        return res;
     }
 }

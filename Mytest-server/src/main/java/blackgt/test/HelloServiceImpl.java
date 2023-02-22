@@ -2,6 +2,7 @@ package blackgt.test;
 
 import blackgt.api.HelloObject;
 import blackgt.api.HelloService;
+import blackgt.rpc.annotation.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
  * @Version 1.0
  * 说明 ：
  */
+@Service
 public class HelloServiceImpl implements HelloService {
     private static final Logger Logger = LoggerFactory.getLogger(HelloServiceImpl.class);
     @Override

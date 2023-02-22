@@ -31,8 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -51,13 +51,19 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../My-RPC-Framework-dd7d02f73802a32db4e7470f2b87e6654478519b" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="blackgt.rpc.transport" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -71,7 +77,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TestClientNetty">
+  <component name="RunManager" selected="Application.TestClient">
     <configuration name="TestClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.blackgt.test.TestClient" />
       <module name="Mytest-client" />
@@ -133,10 +139,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestClientNetty" />
-        <item itemvalue="Application.TestNettyServer" />
         <item itemvalue="Application.TestClient" />
         <item itemvalue="Application.TestServer" />
+        <item itemvalue="Application.TestClientNetty" />
+        <item itemvalue="Application.TestNettyServer" />
         <item itemvalue="Application.b" />
       </list>
     </recent_temporary>
@@ -167,7 +173,36 @@
       <workItem from="1669532031056" duration="1773000" />
       <workItem from="1669547417431" duration="9931000" />
       <workItem from="1669605552065" duration="21749000" />
-      <workItem from="1669703894527" duration="13398000" />
+      <workItem from="1669703894527" duration="14015000" />
+      <workItem from="1670217305248" duration="816000" />
+      <workItem from="1670498278655" duration="60000" />
+      <workItem from="1670561463094" duration="10769000" />
+      <workItem from="1670819009409" duration="8000" />
+      <workItem from="1671072962911" duration="1956000" />
+      <workItem from="1671171862694" duration="7184000" />
+      <workItem from="1671243251998" duration="8289000" />
+      <workItem from="1671284549687" duration="2606000" />
+      <workItem from="1671330536814" duration="9511000" />
+      <workItem from="1671430459316" duration="4760000" />
+      <workItem from="1672040124561" duration="1591000" />
+      <workItem from="1672216000652" duration="4577000" />
+      <workItem from="1672281741010" duration="12310000" />
+      <workItem from="1672364821704" duration="9691000" />
+      <workItem from="1672453014799" duration="3074000" />
+      <workItem from="1672546774365" duration="7939000" />
+      <workItem from="1672816402098" duration="605000" />
+      <workItem from="1672971332328" duration="16867000" />
+      <workItem from="1673335566897" duration="3507000" />
+      <workItem from="1673504761194" duration="1206000" />
+      <workItem from="1673684639743" duration="1074000" />
+      <workItem from="1673747383150" duration="1028000" />
+      <workItem from="1673926660603" duration="871000" />
+      <workItem from="1674185358841" duration="2537000" />
+      <workItem from="1674649578086" duration="1197000" />
+      <workItem from="1675093218321" duration="597000" />
+      <workItem from="1675169024387" duration="1187000" />
+      <workItem from="1677045144290" duration="30000" />
+      <workItem from="1677045493133" duration="2663000" />
     </task>
     <servers />
   </component>
@@ -186,16 +221,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/rpc-core/src/main/java/blackgt/rpc/netty/client/RpcClient_Netty.java</url>
-          <line>90</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

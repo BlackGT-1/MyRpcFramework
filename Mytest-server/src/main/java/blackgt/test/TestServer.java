@@ -1,6 +1,7 @@
 package blackgt.test;
 
-import blackgt.api.HelloService;
+import blackgt.rpc.annotation.ServiceScan;
+import blackgt.rpc.transport.socket.server.SocketServer;
 
 /**
  * @Author blackgt
@@ -8,8 +9,10 @@ import blackgt.api.HelloService;
  * @Version 1.0
  * 说明 ：
  */
+@ServiceScan
 public class TestServer {
     public static void main(String[] args) {
-        HelloService helloService = new HelloServiceImpl();
+        SocketServer server = new SocketServer("127.0.0.1", 9999);
+        server.startServer();
     }
 }

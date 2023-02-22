@@ -10,8 +10,9 @@ public interface ServiceProvider {
     /**
      * 添加服务
      * @param service 待添加服务对象
+     * @param serviceName 服务名称
      */
-    <T> void addServiceProvider(T service);
+    <T> void addServiceProvider(T service,String serviceName);
 
     /**
      * 获取服务

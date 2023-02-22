@@ -23,7 +23,10 @@ public enum RpcErrorMessageEnums {
     FAILED_TO_CONNECT_SERVICEREGISTRY("连接注册中心失败"),
     REGISTER_SERVICE_FAILED("服务注册失败"),
     SERIALIZER_NOT_FOUND("没有找到序列化器"),
-    FAILED_TO_INVOKE_SERVICE("服务调用失败");
+    FAILED_TO_INVOKE_SERVICE("服务调用失败"),
+    SERVICE_SCAN_PACKAGE_NOT_FOUND("启动类注解缺失"),
+    UNKNOWN_ERROR("出现未知错误")
+    ;
 
     private final String message;
 }

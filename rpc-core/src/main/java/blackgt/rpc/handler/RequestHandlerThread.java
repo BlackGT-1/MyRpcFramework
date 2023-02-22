@@ -4,8 +4,8 @@ import blackgt.rpc.entity.RpcRequest;
 import blackgt.rpc.entity.RpcResponse;
 import blackgt.rpc.registry.ServiceRegistry;
 import blackgt.rpc.serializer.defaultSerializer;
-import blackgt.rpc.universalInterface.RpcServer;
-import com.esotericsoftware.kryo.DefaultSerializer;
+import blackgt.rpc.transport.socket.util.ObjectReader;
+import blackgt.rpc.transport.socket.util.ObjectWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,16 +20,14 @@ import java.net.Socket;
  */
 public class RequestHandlerThread implements Runnable{
 
-    private static final Logger logger = LoggerFactory.getLogger(RpcServer.class);
+    private static final Logger logger = LoggerFactory.getLogger(RequestHandlerThread.class);
 
     private Socket socket;
-    private ServiceRegistry serviceRegistry;
     private RequestHandler requestHandler;
     private defaultSerializer serializer;
 
-    public RequestHandlerThread(Socket socket, ServiceRegistry serviceRegistry, RequestHandler requestHandler,defaultSerializer serializer) {
+    public RequestHandlerThread(Socket socket, RequestHandler requestHandler,defaultSerializer serializer) {
         this.socket = socket;
-        this.serviceRegistry = serviceRegistry;
         this.requestHandler = requestHandler;
         this.serializer = serializer;
     }
@@ -39,7 +37,10 @@ public class RequestHandlerThread implements Runnable{
         //()中确保了每个资源,在语句结束时关闭
         try(InputStream inputStream = socket.getInputStream();
             OutputStream outputStream = socket.getOutputStream()){
-            //todo
+            RpcRequest rpcRequest = (RpcRequest) ObjectReader.readObject(inputStream);
+            Object result = requestHandler.handler(rpcRequest);
+            RpcResponse<Object> response = RpcResponse.success(result, rpcRequest.getRequestId());
+            ObjectWriter.writeObject(outputStream, response, serializer);
         }catch (IOException e){
             logger.error("有调用或发送时发生异常"+e);
         }
